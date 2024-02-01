@@ -1,0 +1,259 @@
+/*EXAMPLE 1*/
+
+.example1 {
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen1 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen1 .spec {
+    flex: 1;    
+    font-size: 25px;
+    border: 1px solid black;
+}
+.splitscreen1 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 2*/
+
+.example2 {
+    margin-top: 80px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen2 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen2 .spec {
+    flex: 1;    
+    font-size: 25px;
+    border: 1px solid black;
+}
+.splitscreen2 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 3*/
+
+.example3 {
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen3 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen3 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen3 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 4*/
+
+.example4 {
+    margin-top: 80px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen4 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen4 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen4 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 5*/
+
+.example5 {
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen5 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen5 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen5 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 6*/
+
+.example6 {
+    margin-top: 80px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen6 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen6 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen6 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 7*/
+
+.example7 {
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen7 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen7 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen7 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 8*/
+
+.example8 {
+    margin-top: 80px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen8 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen8 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen8 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 9*/
+
+.example9 {
+    margin-top: 30px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen9 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen9.spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen9 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+/*EXAMPLE 10*/
+
+.example10 {
+    margin-top: 80px;
+    margin-left: 20px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.splitscreen10 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.splitscreen10 .spec {
+    flex: 1;    
+    font-size: 20px;
+    border: 1px solid black;
+}
+.splitscreen10 .image {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
