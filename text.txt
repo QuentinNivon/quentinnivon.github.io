@@ -1,0 +1,180 @@
+  <input type="button" onclick="location.href='http://34.155.234.66:3000/?msg=First, the user ApplyOnline. Then, he UploadsPassport, so that the company can EvaluateApplication. Once the company EvaluateApplication, it decides between RejectApplication or AcceptApplication. If they AcceptApplication, they then have to PayForFees, before PreparingAndDeliveringPassport.'" value="Go to website" />
+
+    <!-- EXAMPLE 1 -->
+
+    <div class="example1"> - Example 1: </div>
+    <div class="splitscreen1">
+        <div class="spec">
+            First, the user ApplyOnline.<br/>
+            Then, he UploadsPassport, so that the company can EvaluateApplication.<br/>
+            Once the company EvaluateApplication, it decides between RejectApplication or AcceptApplication.<br/>
+            If they AcceptApplication, they then have to PayForFees, before PreparingAndDeliveringPassport.
+        </div>
+
+        <div class="image">
+            <img src="images/apsec1.svg" alt="Example 1" style="max-width: 1300px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 2 -->
+
+    <div class="example2"> - Example 2: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            First, the user AppliesOnline.<br/>
+            Then, in a loop necessarily the user UploadsPassport before the system ChecksQuality, and optionally the system RequiresNewUpload.<br/>
+            After ChecksQuality, the company EvaluatesApplication.<br/>
+            Then, the company has the choice to RejectApplication or AcceptApplication.<br/>
+            If the company AcceptApplication, then they have to PayForFees and PreparePassport, after what they DeliverPassport.
+        </div>
+
+        <div class="image">
+            <img src="images/apsec2.svg" alt="Example 1" style="width: 950px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 3 -->
+
+    <div class="example2"> - Example 3: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            First, the system ProcessApplication.<br/>
+            Then, if the client has an account, the system RetrieveCustomerProfile and AnalyseCustomerProfile.<br/>
+            Otherwise, the banker CreateProfile.<br/>
+            Once done, the system IdentifyAccountType, and the banker PrepareAccountOpening.<br/>
+            After that, the user ReceiveSupportDocuments, the banker UpdateInfoRecords, and the system also performs some BackgroundVerification at the same time than ReviewApplication.<br/>
+            Finally, the bank either NotifyRejection, or GenerateAccountNumber, SendStarterKit, and ActivateAccount.
+        </div>
+
+        <div class="image">
+            <img src="images/facs.svg" alt="Example 1" style="width: 1200px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 4 -->
+
+    <div class="example2"> - Example 4: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            The process starts with a loop in which the user necessarily FillInForms before undergo MedicalCheckUp and process to either a VisaApplication or a VisaVerification, while optionally receiving a Reject.<br/>
+            Once this information has been received, the company either ValidatePartially the documents, and send a message to the user to AskForAdditionalDocuments, or Validate.<br/>
+            Finally, the system UpdatePersonnelDatabase, which allows the financial service to AnticipateWages, and the human resources service to PrepareWelcomeKit, after what the system ArchiveAllDocuments.
+        </div>
+
+        <div class="image">
+            <img src="images/foclasa.svg" alt="Example 1" style="width: 900px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 5 -->
+
+    <div class="example2"> - Example 5: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            The MissionPaperwork can be done in parallel of the FlightBooking, the VisaDelivery, and the HotelReservation.<br/>
+            The HotelReservation precedes the Vaccination, and everything must be done before ReturnDocuments.<br/>
+            Finally Reimbursement and ArchiveDocs can start.
+        </div>
+
+        <div class="image">
+            <img src="images/icsoc.svg" alt="Example 1" style="width: 1100px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 6 -->
+
+    <div class="example2"> - Example 6: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            DecideNormalPostOrSpecialCarrier executes before a choice between either RequestQuotes preceding AssignCarrier, or CheckExtraInsurance before either TakeOutExtraInsurance or FillInPostLabel.<br/>
+            In parallel of this, PackageGoods is executed.<br/>
+            Finally, MovePackageToPickArea starts.
+        </div>
+
+        <div class="image">
+            <img src="images/ifm.svg" alt="Example 1" style="width: 1400px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 7 -->
+
+    <div class="example2"> - Example 7: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            At the beginning, the secretary EvaluatePatientRequest.<br/>
+            Then, the doctor either ExamineAndInterviewPatient, MakeDiagnosis and ConductDiagnosticWorkup one after the other, or EvaluateHospitalisation in order to chose between TreatExacerbations or PrescribeTherapy.<br/>
+            Finally, he PlanExamination.
+        </div>
+
+        <div class="image">
+            <img src="images/is.svg" alt="Example 1" style="width: 1200px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 8 -->
+
+    <div class="example2"> - Example 8: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            First, the user EvaluateFirmnessColorAndDamages.<br/>
+            Then, the machine ReadPalletLabels before ReadTemperatureAndHumidity.<br/>
+            After that, the system RegisterPalletStorage and simultaneously AdjustRedfrigeratorTemperature before StorePalletInRefrigerator.<br/>
+            These steps allow a worker to SelectSampleToAnalyse, which is followed by a technician that AnalyseSample.<br/>
+            Finally, depending on the result of the analysis, two mutually exclusive paths can occur.<br/>
+            In the first one, the system sequentially ActivateAlarm, RegisterPalletRejection and DiscardPallet.<br/>
+            In the second one, the system ManageShipment before either MovePalletToNonPriorityArea, or ReducePrice before MovePalletToPriorityArea and finally RegisterPalletShipment.
+        </div>
+
+        <div class="image">
+            <img src="images/jss.svg" alt="Example 1" style="width: 1300px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 9 -->
+
+    <div class="example2"> - Example 9: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            First, the user FillInForms, the doctor performs a MedicalCheckup, and the administration does the VisaApplication.<br/>
+            Then, the user SubmitDocuments.<br/>
+            If DocumentsRejected, nothing happens.<br/>
+            Otherwise, if DocumentsAccepted, the administration proceeds to the ArchiveAllDocuments, and the system UpdatePersonnelDatabase so that the staff can AnticipateWages and PrepareWelcomeKit.
+        </div>
+
+        <div class="image">
+            <img src="images/scc.svg" alt="Example 1" style="width: 1300px">
+        </div>
+    </div>
+
+    <!-- EXAMPLE 10 -->
+
+    <div class="example2"> - Example 10: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            First, the administration has to give the MissionAuthorization.<br/>
+            While the user BookFlight, the administrative staff can do the MissionPaperwork.<br/>
+            After the booking his flight, the user is allowed to ReserveHotel, TakeInsurance, CheckLocalTransportation, and DoVaccination.<br/>
+            Once he has ReserveHotel and finished his MissionPaperwork, he can start the VisaProcess.<br/>
+            In the end, the administration ArchiveMission.
+        </div>
+
+        <div class="image">
+            <img src="images/scp.svg" alt="Example 1" style="width: 1300px">
+        </div>
+    </div>
+
+     <!-- EXAMPLE 11 -->
+
+    <div class="example2"> - Example 11: </div>
+    <div class="splitscreen2">
+        <div class="spec">
+            First of all, an employee CollectGoods brought by a client.<br/>
+            Then, in parallel, the client PayForDelivery and the employee PrepareParcel.<br/>
+            The company can either DeliverByCar or DeliverByDrone (depending on the distance for example).
+        </div>
+
+        <div class="image">
+            <img src="images/wrla.svg" alt="Example 1" style="width:900px">
+        </div>
+    </div>
+</body>
