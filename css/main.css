@@ -38,3 +38,12 @@
 .accordion-header{
     position:relative;
 }
+
+#index-div{
+    background-color:beige;
+}
+
+.card-footer {
+  background: transparent;
+  border-top: 0px;
+}
