@@ -9,7 +9,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -22,16 +22,16 @@
 
 <body>
     
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: beige;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Quentin NIVON</a>
+      <a class="navbar-brand" href="../index.html">Quentin NIVON</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home</a>
           </li>
@@ -41,7 +41,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="publications.html">Publications</a>
+            <a class="nav-link active" href="publications.html">Publications</a>
           </li>
 
           <li class="nav-item">
@@ -66,12 +66,12 @@
     
     <br>
     <br>
-    This page contains the list of all the publications that I (co-)authored during my academic career.
-    <br>
-    Even if it is supposed to, this page may not be up-to-date at the time you read it, so please feel free to visit my <a href="https://dblp.org/pid/332/6304.html" style="text-decoration: none">dblp page</a> and/or my
-    <a href="https://scholar.google.com/citations?user=wJcVcNIAAAAJ&hl=fr&oi=ao" style="text-decoration: none">Google Scholar page</a>.
-    <br>
-    <br>
+    <p style="font-size: 20px;">
+      This page contains the list of all the publications that I (co-)authored during my academic career.
+      <br>
+      Even if it is supposed to, this page may not be up-to-date at the time you read it, so please feel free to visit my <a href="https://dblp.org/pid/332/6304.html" style="text-decoration: none">dblp page</a> and/or my
+      <a href="https://scholar.google.com/citations?user=wJcVcNIAAAAJ&hl=fr&oi=ao" style="text-decoration: none">Google Scholar page</a>.
+    </p>
 
     <!-- JOURNALS -->
 
@@ -113,48 +113,50 @@
 
     <!-- CONFERENCES -->
 
-    <div class="alert alert-info" role="alert">
-      <strong>International conferences</strong>
+    <div class="mt-4 p-4 rounded" style="background-color: beige;">
+      <h4><strong>International conferences</strong></h4>
+      <br>
+
+      <ol style="font-size: 20px;">
+        <li>
+          <strong>Automated Generation of BPMN Processes from Textual Requirements</strong>. Quentin Nivon, Gwen Sala&uuml;n,
+          <i>Proc. of ICSOC'24</i>, December 2024, Tunis, Tunisia. (in press)
+        </li>
+  
+        <li>
+          <strong>Semi-Automated Refactoring of BPMN Processes</strong>. Quentin Nivon, Gwen Sala&uuml;n,
+          <i> Proc. of QRS'24</i>, July 2024, Cambridge, England.
+          <a href="https://inria.hal.science/hal-04644426/en" target="_blank">
+            <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
+          </a>
+        </li>
+  
+        <li>
+          <strong>Automated Repair of Violated Eventually Properties in Concurrent Programs</strong>. Irman Faqrizal, Quentin Nivon, Gwen Sala&uuml;n,
+          <i>Proc. of FormaliSE'24</i>, April 2024, Lisbon, Portugal.
+          <a href="https://inria.hal.science/hal-04566873/en" target="_blank">
+            <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
+          </a>
+        </li>
+  
+        <li>
+          <strong>Refactoring of Multi-Instance BPMN Processes with Time and Resources</strong>. Quentin Nivon, Gwen Sala&uuml;n,
+          <i>Proc. of SEFM'23</i>, November 2023, Eindhoven, the Netherlands.
+          <a href="https://inria.hal.science/hal-04278929/en" target="_blank">
+            <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
+          </a>
+        </li>
+  
+        <li>
+          <strong>Debugging of BPMN Processes Using Coloring Techniques</strong>. Quentin Nivon, Gwen Sala&uuml;n,
+          <i>Proc. of FACS'22</i>, November 2022, Oslo, Norway (online).
+          <a href="https://inria.hal.science/hal-03847267/en" target="_blank">
+            <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
+          </a>
+        </li>
+      </ol>
     </div>
-
-    <ol>
-      <li>
-        <strong>Automated Generation of BPMN Processes from Textual Requirements</strong>. Quentin Nivon, Gwen Sala&uuml;n,
-        <i>Proc. of ICSOC'24</i>, December 2024, Tunis, Tunisia. (in press)
-      </li>
-
-      <li>
-        <strong>Semi-Automated Refactoring of BPMN Processes</strong>. Quentin Nivon, Gwen Sala&uuml;n,
-        <i> Proc. of QRS'24</i>, July 2024, Cambridge, England.
-        <a href="https://inria.hal.science/hal-04644426/en" target="_blank">
-          <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
-        </a>
-      </li>
-
-      <li>
-        <strong>Automated Repair of Violated Eventually Properties in Concurrent Programs</strong>. Irman Faqrizal, Quentin Nivon, Gwen Sala&uuml;n,
-        <i>Proc. of FormaliSE'24</i>, April 2024, Lisbon, Portugal.
-        <a href="https://inria.hal.science/hal-04566873/en" target="_blank">
-          <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
-        </a>
-      </li>
-
-      <li>
-        <strong>Refactoring of Multi-Instance BPMN Processes with Time and Resources</strong>. Quentin Nivon, Gwen Sala&uuml;n,
-        <i>Proc. of SEFM'23</i>, November 2023, Eindhoven, the Netherlands.
-        <a href="https://inria.hal.science/hal-04278929/en" target="_blank">
-          <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
-        </a>
-      </li>
-
-      <li>
-        <strong>Debugging of BPMN Processes Using Coloring Techniques</strong>. Quentin Nivon, Gwen Sala&uuml;n,
-        <i>Proc. of FACS'22</i>, November 2022, Oslo, Norway (online).
-        <a href="https://inria.hal.science/hal-03847267/en" target="_blank">
-          <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
-        </a>
-      </li>
-    </ol>
+    
     <!-- Not enough conferences to show a "Show all" button xD -->
 
     <!--
@@ -168,7 +170,6 @@
     </p>
 
     -->
-    <br>
 
   </div> <!-- /container -->
 </body>

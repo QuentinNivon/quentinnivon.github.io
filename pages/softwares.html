@@ -9,7 +9,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -22,16 +22,16 @@
 
 <body>
     
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: beige;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Quentin NIVON</a>
+      <a class="navbar-brand" href="../index.html">Quentin NIVON</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home</a>
           </li>
@@ -49,7 +49,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="softwares.html">Softwares</a>
+            <a class="nav-link active" href="softwares.html">Softwares</a>
           </li>
 
           <li class="nav-item">
@@ -63,58 +63,72 @@
   <div class="container theme-showcase" role="main">
     <br>
     <br>
-    This page presents the list of softwares that I developed, improved and/or maintained during my academic career.
-    <br>
-    <br>
+    <p style="font-size: 20px;">
+      This page contains the list of softwares that I developed, improved and/or maintained during my academic career.
+    </p>
 
-    <h4>
-        GIVUP
-    </h4>
+    <!-- GIVUP -->
 
-    GIVUP, which stands for <strong>G</strong>enerat<strong>I</strong>on and <strong>V</strong>erification of <strong>U</strong>nderspecified <strong>P</strong>rocesses,
-    is a tool aiming at automatically generating and verifying temporal logic properties
-    on BPMN processes from descriptions written in natural language.
-    <br>
-    It is <a href="givup.html" style="text-decoration: none">freely usable online</a>, provided that you sent me a password request and did not exceed your quota.
-    <br>
-    Several real-world examples of BPMN processes generated from textual descriptions are also available on <a href="transformation.html" style="text-decoration: none">this page</a>.
+    <div class="mt-4 p-4 rounded" style="background-color: beige;">
+      <h4><strong>GIVUP</strong></h4>
+      <br>
 
-    <br>
-    <br>
-    <br>
-    <h4>
-      BISAR
-      <a href="https://inria.hal.science/hal-04644426/en" target="_blank">
-        <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
-      </a>
-    </h4>
+      <p style="font-size: 20px;">
+        GIVUP, which stands for <strong>G</strong>enerat<strong>I</strong>on and <strong>V</strong>erification of <strong>U</strong>nderspecified <strong>P</strong>rocesses,
+        is a tool aiming at automatically generating and verifying temporal logic properties
+        on BPMN processes from descriptions written in natural language.
+        <br>
+        It is <a href="givup.html" style="text-decoration: none">freely usable online</a>, provided that you sent me a password request and did not exceed your quota.
+        <br>
+        Several real-world examples of BPMN processes generated from textual descriptions are also available on <a href="transformation.html" style="text-decoration: none">this page</a>.
+      </p>
+    </div>
 
-    BISAR, which stand for <strong>B</strong>PMN <strong>I</strong>nstrument for <strong>S</strong>emi-<strong>A</strong>utomated <strong>R</strong>efactoring,
-    is a tool aiming at optimising BPMN processes enhanced with time and resources and executed multiple times.
-    <br>
-    The optimisation method used is based on a restructuration of the BPMN process, during which the position of the tasks of the process evolve over time.
-    <br>
-    It is <a href="https://github.com/QuentinNivon/Step-by-Step_Refactoring" style="text-decoration: none">freely available online</a>.
+    <!-- BISAR -->
 
-    <br>
-    <br>
-    <br>
-    <h4>
-        VBPMN
-        <a href="https://inria.hal.science/hal-01591665/en" target="_blank">
-            <img src="../images/logo_hal.png" alt="[HAL]" width="60" height="25"/>
+    <div class="mt-4 p-4 rounded" style="background-color: beige;">
+      <h4><strong>BISAR
+        <a href="https://inria.hal.science/hal-04644426/en" target="_blank">
+          <img src="../images/logo_hal.png" alt="[HAL]" width="70" height="30"/>
         </a>
-    </h4>
+      </strong></h4>
 
-    VBPMN, which stands for <strong>V</strong>erification of <strong>BPMN</strong>, is a tool aiming at verifying
-    the validity of temporal logic properties on BPMN processes.
-    <br>
-    It was originally designed and developed by <a href="https://ajaykrishna.com/" style="text-decoration: none">Ajay Krishna</a>,
-    <a href="http://pascalpoizat.github.io/" style="text-decoration: none">Pascal Poizat</a>
-    and
-    <a href="https://convecs.inria.fr/people/Gwen.Salaun/" style="text-decoration: none">Gwen Sala&uuml;n</a>, and is now maintained and (slightly) modified/enhanced by myself.
-    <br>
-    It is <a href="https://github.com/QuentinNivon/VBPMN" style="text-decoration: none">freely available online</a>.
+      <br>
+  
+      <p style="font-size: 20px;">
+        BISAR, which stand for <strong>B</strong>PMN <strong>I</strong>nstrument for <strong>S</strong>emi-<strong>A</strong>utomated <strong>R</strong>efactoring,
+        is a tool aiming at optimising BPMN processes enhanced with time and resources and executed multiple times.
+        <br>
+        The optimisation method used is based on a restructuration of the BPMN process, during which the position of the tasks of the process evolve over time.
+        <br>
+        It is <a href="https://github.com/QuentinNivon/Step-by-Step_Refactoring" style="text-decoration: none">freely available online</a>.
+      </p>
+    </div>
+
+    <!-- VBPMN -->
+
+    <div class="mt-4 p-4 rounded" style="background-color: beige;">
+      <h4><strong>VBPMN
+        <a href="https://inria.hal.science/hal-01591665/en" target="_blank">
+            <img src="../images/logo_hal.png" alt="[HAL]" width="70" height="30"/>
+        </a>
+      </strong>
+      </h4>
+
+      <br>
+
+      <p style="font-size: 20px;">
+        VBPMN, which stands for <strong>V</strong>erification of <strong>BPMN</strong>, is a tool aiming at verifying
+        the validity of temporal logic properties on BPMN processes.
+        <br>
+        It was originally designed and developed by <a href="https://ajaykrishna.com/" style="text-decoration: none">Ajay Krishna</a>,
+        <a href="http://pascalpoizat.github.io/" style="text-decoration: none">Pascal Poizat</a>
+        and
+        <a href="https://convecs.inria.fr/people/Gwen.Salaun/" style="text-decoration: none">Gwen Sala&uuml;n</a>, and is now maintained and (slightly) modified/enhanced by myself.
+        <br>
+        It is <a href="https://github.com/QuentinNivon/VBPMN" style="text-decoration: none">freely available online</a>.
+      </p>
+    </div>
   </div> <!-- /container -->
 </body>
 

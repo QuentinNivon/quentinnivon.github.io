@@ -54,3 +54,16 @@
   margin: 0;
   padding: 0;
 }
+
+.nav-pills > .nav-item > .nav-link {
+  color:black !important;
+} 
+
+.nav-pills .active {
+  background-color:tan !important;
+  color: black !important;
+} 
+
+.nav-item {
+  font-size: 20px;
+}
