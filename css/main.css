@@ -39,10 +39,6 @@
     position:relative;
 }
 
-#index-div{
-    background-color:beige;
-}
-
 .card-footer {
   background: transparent;
   border-top: 0px;
@@ -60,7 +56,7 @@
 } 
 
 .nav-pills .active {
-  background-color:tan !important;
+  background-color:  #4e7c3d    !important;
   color: black !important;
 } 
 
