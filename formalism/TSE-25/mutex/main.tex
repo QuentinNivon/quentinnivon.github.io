@@ -1,0 +1,659 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+\title{Mutual Exclusions Insertion Formalisation}
+\author{Quentin Nivon, Gwen Sala{\"u}n}
+
+
+\usepackage{a4wide}
+\usepackage[export]{adjustbox}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{algpseudocode}
+%\usepackage{alltt}
+\usepackage{AMMALanguages}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[toc,page]{appendix}
+\usepackage{array} 							    % needed for newcolumntype
+%\usepackage[french]{babel}
+\usepackage[altpo, epsilon]{backnaur}
+\usepackage{booktabs}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{comment}
+%\usepackage{courier}
+\usepackage{enumitem}
+\usepackage{epigraph}				 			% Citations en début de chapitre
+\usepackage{fancyhdr} 							% en-tete et pied de page, pour plus d'info: texdoc fancyhdr
+\usepackage{float}
+\usepackage[T1]{fontenc} 						% fontenc permet entre autre de rechercher des mots avec accents dans les PDF produits
+\usepackage{footnote}
+\usepackage{framed}
+%\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage[nodisplayskipstretch]{setspace}		% pas en ordre alphabétique car doit être importé avant "hyperref" pour que les hyperliens des notes de bas de page fonctionnent correctement
+\usepackage[hidelinks]{hyperref}
+%\usepackage[latin1]{inputenc}      			% latin1 n'encode pas la ligature oe, utiliser {\oe}
+%\usepackage[utf8]{inputenc}
+\usepackage{listing}
+\usepackage{listings}
+\usepackage{lmodern}			    			% une police OK pour l'encodage en T1
+\usepackage{makecell}
+\usepackage{mathtools}
+%\usepackage[a4paper]{meta-donnees} 		    % Pour la page de garde de l'université de Grenoble. (temporarily commented)
+\usepackage{minitoc}
+%\usepackage{msc} 								% Message Sequence Diagrams
+%\usepackage{multicol} 						    % to allow listings on double column
+\usepackage{multirow}
+%\usepackage{orcidlink}
+\usepackage{parskip}          					% paragraphe : pas d'indentation, un saut de ligne
+\usepackage{pdflscape}
+\usepackage[final]{pdfpages}	    			% to add the pdf pages
+\usepackage{pgfplots}
+\usepackage{pifont}
+
+\usepackage{soul}
+\usepackage[labelformat=simple, belowskip=1ex]{subcaption}
+%\usepackage{subfig}             				% plusieurs figures en une
+%\usepackage{subfigure}
+\usepackage{tablefootnote}
+%\usepackage{tabularx}             				% table qui s'étendent sur la largeur de la page
+\usepackage{tikz}
+\usetikzlibrary{fit} 
+\usepackage{tikz-bpmn}
+\usepackage{titlesec}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+%\usepackage{txfonts}
+\usepackage{url}
+%\usepackage{verbatim}
+%\usepackage{xspace}
+
+%------------------------------------------------- NEW COMMANDS --------------------------------------------------
+
+\newcommand{\absorbance}[1]{\ensuremath{\mathtt{absorbance}(#1)}}
+\newcommand{\acyclicpath}{p_{\cancelledcirclearrow}}
+\newcommand{\acyclicisreachablefrom}[2]{#1 \xrightarrow{R_{\cancelledcirclearrow}} #2}
+\newcommand{\aetof}[1]{\ensuremath{\mathit{AET}(#1)}}
+\newcommand{\algendif}{\text{\textbf{end if}}}
+\newcommand{\algif}{\text{\textbf{if }}}
+\newcommand{\algobreak}{\text{\textbf{break}}}
+\newcommand{\algreturn}{\State \Return}
+\newcommand{\algthen}{\text{\textbf{then}}}
+%\newcommand{\allchoicesop}[1]{\texttt{allChoices}(#1)}
+\newcommand{\allchoicesop}[1]{\ensuremath{\mathcal{C}}(#1)}
+%\newcommand{\allcondstructsop}[1]{\texttt{CS}(#1)}
+\newcommand{\allcondstructsop}[1]{\ensuremath{\mathcal{S}(#1)}}
+%\newcommand{\allgraphsop}[1]{\texttt{allGraphs}(#1)}
+\newcommand{\allgraphsop}[1]{\ensuremath{\mathcal{G}}(#1)}
+%\newcommand{\alllabelsop}[1]{\texttt{allLabels}(#1)}
+\newcommand{\alllabelsop}[1]{\ensuremath{\Sigma}(#1)}
+%\newcommand{\allloopsop}[1]{\texttt{allLoops}(#1)}
+\newcommand{\allloopsop}[1]{\ensuremath{\mathcal{L}}(#1)}
+%\newcommand{\allnodesop}[1]{\texttt{allNodes}(#1)}
+\newcommand{\allnodesop}[1]{\ensuremath{\mathcal{V}}(#1)}
+\newcommand{\allstructsop}[1]{\texttt{allStructs}(#1)}
+%\newcommand{\alltasksop}[1]{\texttt{allTasks}(#1)}
+\newcommand{\alltasksop}[1]{\ensuremath{\mathcal{T}}(#1)}
+\newcommand{\anyof}[2]{\ensuremath{\mathtt{any}(#1, #2)}}
+\newcommand{\anyofproba}[2]{\ensuremath{\mathtt{any}_p(#1, #2)}}
+\newcommand{\anyofprobaunique}[1]{\ensuremath{\mathtt{any}_p(#1)}}
+\newcommand{\anyofunique}[1]{\ensuremath{\mathtt{any}(#1)}}
+\newcommand{\bnfterm}[1]{$\langle$#1$\rangle$}
+%\newcommand{\boundary}[1]{\texttt{boundary}(#1)}
+\newcommand{\boundary}[1]{\ensuremath{\partial(#1)}}
+\newcommand{\bpmnacyclicpaths}[1]{\mathcal{\widehat{P}}_{#1}^{0}}
+\newcommand{\bpmnacyclicpathsof}[2]{\mathcal{\widehat{P}}_{#1}^{0}(#2)}
+\newcommand*{\bpmnendevent}{\tikz[baseline=-.25em]{\node[circle, draw, ultra thick, minimum width=1.2em, minimum height=1.2em] () {e};}}
+\newcommand*{\bpmnorgw}{\tikz[baseline=-.25em]{\node[shape=ID,draw,inner sep=0pt, minimum size=1.5em]  (X) {};}}
+\newcommand*{\bpmnpargw}{\tikz[baseline=-.25em]{\node[shape=PF,draw,inner sep=0pt, minimum size=1.5em] (X) {};}}
+\newcommand{\bpmnpargwmerge}{\ensuremath{\bpmnpargw_M}}
+\newcommand{\bpmnpargwmergetype}{\bpmnpargwmerge}
+\newcommand{\bpmnpargwsplit}{\ensuremath{\bpmnpargw_S}}
+\newcommand{\bpmnpargwsplittype}{\bpmnpargwsplit}
+\newcommand{\bpmnpaths}[1]{\mathcal{P}_{#1}^{0}}
+\newcommand{\bpmnpathsof}[2]{\mathcal{P}_{#1}^{0}(#2)}
+\newcommand*{\bpmnstartevent}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {s};}}
+\newcommand{\bpmntask}[1]{\tikz[baseline=-.25em]{\node[rectangle, draw, black, minimum width=2em, minimum height=1.5em, rounded corners] () {#1};}}
+\newcommand{\bpmnredtask}[1]{\tikz[baseline=-.25em]{\node[rectangle, draw, red, minimum width=2em, minimum height=1.5em, rounded corners] () {\textcolor{red}{#1}};}}
+\newcommand*{\bpmnxorgw}{\tikz[baseline=-.25em]{\node[shape=XOR,draw,inner sep=0pt, minimum size=1.5em] (X) {};}}
+\newcommand{\bpmnxorgwmerge}{\ensuremath{\bpmnxorgw_M}}
+\newcommand{\bpmnxorgwmergetype}{\bpmnxorgwmerge}
+\newcommand{\bpmnxorgwsplit}{\ensuremath{\bpmnxorgw_S}}
+\newcommand{\bpmnxorgwsplittype}{\bpmnxorgwsplit}
+\newcommand{\cancelledcirclearrow}{\rotatebox[origin=c]{180}{\ensuremath{\cancel{\circlearrowright}}}}
+\newcommand{\cardof}[1]{\lvert #1 \rvert}
+\newcommand{\childrenof}[1]{\ensuremath{\mathtt{child}(#1)}}
+%\newcommand{\childrenof}[1]{\mathit{children(#1)}}
+%\newcommand{\childrenof}[1]{\mathit{#1.children}}
+\newcommand{\choiceop}{`$\vert$' }
+\newcommand{\choiceopw}{`$\vert$'}
+\newcommand{\closedarray}[2]{[#1...#2]}
+\newcommand{\closestboundary}[2]{\ensuremath{\mathtt{boundary}^*(#1, #2)}}
+%\newcommand{\closestcondstruct}[1]{\ensuremath{\mathtt{CCS}(#1)}}
+\newcommand{\closestcondstruct}[1]{\ensuremath{\mathcal{S}^*(#1)}}
+%\newcommand{\closestnode}[1]{\ensuremath{\mathtt{CN}(#1)}}
+\newcommand{\closestnode}[1]{\ensuremath{\mathcal{V}^*(#1)}}
+%\newcommand{\closestseqgraph}[1]{\ensuremath{\mathtt{CSG}(#1)}}
+\newcommand{\closestseqgraph}[1]{\ensuremath{\mathcal{G}^*(#1)}}
+\newcommand{\cluster}[1]{\ensuremath\textit{cluster}(#1)}
+\newcommand{\code}[1]{\textsf{\small #1}}
+\newcommand{\comaop}{`$,$' }
+\newcommand{\comaopw}{`$,$'}
+%\newcommand{\confset}[1]{\texttt{Hist}(#1)}
+\newcommand{\confset}[1]{\history(#1)}
+\newcommand{\constraints}{\mathit{Cons}}
+\newcommand{\context}[2]{\ensuremath\textit{context}(#1,#2)}
+\newcommand{\contextAux}[3]{\ensuremath\textit{context}(#1,#2,#3)}
+%\newcommand{\contextwisemutex}{\vert_{CW}}
+\newcommand{\contextwisemutex}[2]{\ensuremath{#1\ \vert_{CW}\ #2}}
+\newcommand{\continue}{\text{\textbf{continue}}}
+%\newcommand{\costop}[1]{\texttt{cost}(#1)}
+\newcommand{\costop}[1]{\ensuremath{\mathtt{cost}(#1)}}
+\newcommand{\csg}[2]{\ensuremath\textit{csg}(#1,#2)}
+\newcommand{\cyclicpath}{p_{\mycirclearrow}}
+\newcommand{\cyclicisreachablefrom}[2]{#1 \xrightarrow{R_{\mycirclearrow}} #2}
+%\newcommand{\defequals}{\stackrel{\mathclap{\normalfont\mbox{def}}}{=}}
+\newcommand{\defequals}{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+\newcommand{\degreeof}[1]{\ensuremath{\mathtt{deg}(#1)}}
+\newcommand{\dependencies}{\ensuremath{\mathtt{Dep}}}
+\newcommand{\distanceof}[2]{\ensuremath{\|(#1,#2)\|}}
+%\newcommand{\durationop}[1]{\ensuremath{\mathtt{duration}(#1)}}
+\newcommand{\durationop}[1]{\ensuremath{\delta(#1)}}
+\newcommand{\example}{\textit{Example. }}
+\newcommand{\expressionsset}{\ensuremath{\mathtt{Expr}}}
+\newcommand{\fourspaces}{\space \space \space \space}
+\newcommand{\genop}[2]{\ensuremath{\mathtt{gen}(#1,#2)}}
+\newcommand{\geniop}[3]{\ensuremath{\mathtt{gen}_{P_{#1}\!}(#2,#3)}}
+\newcommand{\geniiop}[4]{\ensuremath{\mathtt{gen}_{P_{#1}\!}^{#2}(#3,#4)}}
+\newcommand{\GFL}{\ensuremath G_\textit{FL}}
+\newcommand{\GLF}{\ensuremath G_\textit{LF}}
+\newcommand{\GlobalTimer}{\ensuremath{\mathfrak{T}}}
+\newcommand{\GlobalTimerOf}[1]{\ensuremath{\mathfrak{T}(#1)}}
+\newcommand{\graph}{G~=~(V,~E,~\Sigma)}
+\newcommand{\graphparam}[1]{G_{#1}=(V_{#1},E_{#1},\Sigma_{#1})}
+%\newcommand{\graph}{G~=~(V,~E,~\Sigma,~I)}
+\newcommand{\greaterentirepart}[1]{\ensuremath{\lceil #1 \rceil}}
+%\newcommand{\holdtoken}[1]{\dot{#1}}
+\newcommand{\history}{\ensuremath{\mathcal{H}}}
+\newcommand{\holdtoken}[1]{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily $\bullet$}}}{#1}}}
+\newcommand{\iat}{\ensuremath{\mathit{IAT}}}
+\newcommand{\indexof}[1]{\mathtt{index}(#1)}
+\newcommand{\infreach}{$\infty$-reachability}
+\newcommand{\initialeventtype}{\texttt{initial event}}
+\newcommand{\insertop}{\ensuremath{\mathtt{ins}}}
+\newcommand{\isreachablefrom}[2]{#1 \xrightarrow{R} #2}
+\newcommand{\labelof}[1]{\sigma(#1)}
+\newcommand{\lclosedarray}[2]{[#1...#2[}
+\newcommand{\loopmandaop}{`$+$' }
+\newcommand{\loopop}{`$*$' }
+\newcommand{\loopoptioop}{`$?$' }
+\newcommand{\loopopw}{`$*$'}
+\newcommand{\loops}{\ensuremath{\mathtt{Loops}}}
+\newcommand{\lowerentirepart}[1]{\ensuremath{\lfloor #1 \rfloor}}
+\newcommand{\lslice}[2]{#1[#2:]}
+\newcommand{\ltland}{\ensuremath{\land}}
+\newcommand{\ltlF}{\textbf{F}}
+\newcommand{\ltlG}{\textbf{G}}
+\newcommand{\ltlimplies}{\ensuremath{\Rightarrow}}
+\newcommand{\ltlN}{\textbf{N}}
+\newcommand{\ltlnot}{\ensuremath{\lnot}}
+\newcommand{\ltlor}{\ensuremath{\lor}}
+\newcommand{\ltlU}{\textbf{U}}
+\newcommand{\ltlW}{\textbf{W}}
+\newcommand{\maxnbinstances}{\ensuremath{I_{\mathit{max}}}}
+\newcommand{\move}[2]{\ensuremath\textit{move}(#1,#2)}
+\newcommand{\moveup}{$\mu$ }
+\newcommand{\moveuprec}{$\mu_r$ }
+\newcommand{\mutex}[2]{\ensuremath{#1\ \vert\ #2}}
+%\newcommand{\mutex}{\vert}
+\newcommand{\mutexesof}[1]{\ensuremath{\mathtt{mutex}(#1)}}
+\newcommand{\mycirclearrow}{\rotatebox[origin=c]{180}{\ensuremath{\circlearrowright}}}
+\newcommand{\mycmark}{\ding{51}}%
+\newcommand{\myendeventtype}{\texttt{end event}}
+\newcommand{\mysubitem}[2]{{\setlength\itemindent{15pt} \item[#1] #2}}
+\newcommand{\myxmark}{\ding{55}}%
+\newcommand{\namedgraph}[1]{#1~=~(V,~E,~\Sigma,~I)}
+\newcommand{\naturals}{\ensuremath{\mathbb{N}}}
+\newcommand{\newtask}[1]{\textit{#1}}
+\newcommand{\normal}[2]{\ensuremath{\mathcal{N}(#1, #2)}}
+\newcommand{\normalise}[1]{\ensuremath{\mathtt{norm}(#1)}}
+\newcommand{\normalisei}[1]{\ensuremath{\mathtt{norm}_i(#1)}}
+\newcommand{\normaliseone}[1]{\ensuremath{\mathtt{norm}_1(#1)}}
+\newcommand{\normalisetwo}[1]{\ensuremath{\mathtt{norm}_2(#1)}}
+\newcommand{\normalisethree}[1]{\ensuremath{\mathtt{norm}_3(#1)}}
+\newcommand{\openarray}[2]{]#1...#2[}
+\newcommand{\parallelsof}[1]{\ensuremath{\mathtt{par}(#1)}}
+\newcommand{\paramedconstraints}[1]{\mathit{Cons_{#1}}}
+\newcommand{\paramedgraph}[1]{G_{#1}~=~(V_{#1},~E_{#1},~\Sigma_{#1},~I_{#1})}
+%\newcommand{\parentof}[1]{\texttt{parent}(#1)}
+\newcommand{\parentof}[1]{\ensuremath{\mathtt{parent}(#1)}}
+%\newcommand{\parentsof}[1]{\mathit{#1.parents}}
+\newcommand{\parentsof}[1]{\ensuremath{\mathtt{parents}(#1)}}
+\newcommand{\parop}{`$\&$' }
+\newcommand{\paropw}{`$\&$'}
+\newcommand{\paths}[1]{\mathcal{P}_{#1}}
+\newcommand{\pathsof}[2]{\mathcal{P}_{#1}(#2)}
+\newcommand{\pLF}{\ensuremath p_\textit{LF}}
+\newcommand{\predecessorsof}[1]{\ensuremath{\mathtt{pred}(#1)}}
+%\newcommand{\predecessorsof}[1]{\mathit{#1.predecessors}}
+%\newcommand{\pushtokens}[1]{\texttt{push}(#1)}
+\newcommand{\pushtokens}[1]{\ensuremath{\mathtt{push}(#1)}}
+\newcommand{\rclosedarray}[2]{]#1...#2]}
+\newcommand{\redtext}[1]{\textcolor{red}{#1}}
+\newcommand{\redbold}[1]{\textcolor{red}{\ensuremath{\mathbf{#1}}}}
+\newcommand{\reduceop}[1]{\texttt{reduce}(#1)}
+\newcommand{\Rho}{\ensuremath{P}}
+\newcommand{\remove}[2]{\ensuremath\textit{remove}(#1,#2)}
+%\newcommand{\removealltasksop}[2]{\texttt{remove}^*(#1, #2)}
+\newcommand{\removealltasksop}[2]{\ensuremath{\mathtt{rem}^*(#1, #2)}}
+\newcommand{\removestar}[2]{\ensuremath\textit{rem}^*(#1,#2)}
+\newcommand{\removetaskop}[2]{\ensuremath{\mathtt{rem}(#1, #2)}}
+\newcommand{\resname}[1]{\textsf{#1}}
+\newcommand{\resource}[1]{\textsf{#1}}
+\newcommand{\resourcesop}[2]{\ensuremath{\rho(#1, #2)}}
+\newcommand{\respool}{\ensuremath{\Rho}}
+\newcommand{\respoolinfty}{\ensuremath{\Rho_\infty}}
+\newcommand{\restrictionof}[2]{\ensuremath{#1\restriction_{#2}}}
+\newcommand{\rexample}{\textit{Running example. }}
+\newcommand{\rootof}[1]{\ensuremath{\mathtt{root}(#1)}}
+\newcommand{\rslice}[2]{#1[:#2]}
+\newcommand{\sandgwmerge}{\andgw$_M$ }
+\newcommand{\sandgwsplit}{\andgw$_S$ }
+%\newcommand{\scoreop}[1]{\texttt{score}(#1)}
+\newcommand{\scoreop}[1]{\ensuremath{\mathtt{score}(#1)}}
+\newcommand{\sendtoken}[2]{#1 \xrightarrow{\token} #2}
+\newcommand{\seqgraph}{\ensuremath{G_< = (\seqgraphnodes, \seqgraphedges, \seqgraphlabels)}}
+\newcommand{\seqgraphchoice}{\ensuremath{\bpmnxorgw_C}}
+%\newcommand{\seqgraphchoicetype}{\seqgraphchoice}
+\newcommand{\seqgraphchoicetype}{\ensuremath{\mathcal{C}}}
+\newcommand{\seqgraphedge}{\ensuremath{e_<}}
+\newcommand{\seqgraphedges}{\ensuremath{E_<}}
+\newcommand{\seqgraphfirstnode}[1]{\ensuremath{\mathtt{first}(#1)}}
+%\newcommand{\seqgraphgraphtype}{G}
+\newcommand{\seqgraphgraphtype}{\ensuremath{\mathcal{G}}}
+\newcommand{\seqgraphlastnode}[1]{\ensuremath{\mathtt{last}(#1)}}
+\newcommand{\seqgraphloop}{\ensuremath{\bpmnxorgw_L}}
+%\newcommand{\seqgraphlooptype}{\seqgraphloop}
+\newcommand{\seqgraphlooptype}{\ensuremath{\mathcal{L}}}
+\newcommand{\seqgraphlabels}{\ensuremath{\Sigma_<}}
+\newcommand{\seqgraphnode}{\ensuremath{v_<}}
+\newcommand{\seqgraphnodes}{\ensuremath{V_<}}
+\newcommand{\seqgraphparent}[1]{\ensuremath{\mathtt{parent}}(#1)}
+\newcommand{\seqgraphpred}[1]{\ensuremath{\mathtt{pred}(#1)}}
+\newcommand{\seqgraphsucc}[1]{\ensuremath{\mathtt{succ}(#1)}}
+\newcommand{\seqgraphtasktype}{\ensuremath{\mathcal{T}}}
+\newcommand{\seqop}{`$<$' }
+\newcommand{\seqopw}{`$<$'}
+\newcommand{\sledom}{\Relbar\joinrel\mathrel{|}}
+\newcommand{\slice}[3]{#1[#2:#3]}
+\newcommand{\SosSpace}{\ \ \ \ \ }
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}
+}
+%\newcommand{\strongmutex}{\vert_S}
+\newcommand{\strongmutex}[2]{\ensuremath{#1\ \vert_S\ #2}}
+\newcommand{\successorsof}[1]{\ensuremath{\mathtt{succ}(#1)}}
+%\newcommand{\successorsof}[1]{\mathit{#1.successors}}
+\newcommand{\swcetop}[2]{\texttt{SWCET}(#1, #2)}
+\newcommand{\swcetopinf}[1]{\ensuremath{\texttt{SWCET}(#1, \Rho_{\infty})}}
+\newcommand{\sxorgwmerge}{\xorgw$_M$ }
+\newcommand{\sxorgwsplit}{\xorgw$_S$ }
+\newcommand{\sync}[1]{\mathtt{sync}(#1)}
+\newcommand{\task}[1]{\textsf{#1}}
+\newcommand{\taskname}[1]{\textsf{#1}}
+%\newcommand{\tasksop}[1]{\texttt{tasks}(#1)}
+\newcommand{\tasksop}[1]{\ensuremath{\mathtt{tasks}(#1)}}
+\newcommand{\tasktype}{\texttt{task}}
+\newcommand{\token}{\bullet}
+\newcommand{\transition}[2]{#1~\rightarrow~#2}
+\newcommand{\treeanytype}[1]{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {#1};}}
+\newcommand{\treechoicetype}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {\ensuremath{\vert}};}}
+\newcommand{\treecomatype}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.5em, minimum height=1.5em] () {,};}}
+\newcommand{\treelooptype}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {*};}}
+\newcommand{\treenode}[1]{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1em, minimum height=1em] () {\ensuremath{#1}};}}
+\newcommand{\treeop}[1]{\ensuremath{T_{\preceq}(#1)}}
+\newcommand{\treepartype}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {\&};}}
+\newcommand{\treeseqtype}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {<};}}
+\newcommand{\treetasktype}{\tikz[baseline=-.25em]{\node[circle, draw, minimum width=1.2em, minimum height=1.2em] () {t};}}
+\newcommand{\tupleof}[2]{(#1, ..., #2)}
+%\newcommand{\typeof}[1]{\texttt{type}(#1)}
+\newcommand{\typeof}[1]{\ensuremath{\theta(#1)}}
+\newcommand{\uniform}[2]{\ensuremath{\mathcal{U}_{[#1, #2]}}}
+\newcommand{\WaitingTasksOP}[2]{\texttt{wait}(#1, #2)}
+\newcommand{\wcetop}[2]{\texttt{WCET}(#1, #2)}
+\newcommand{\wcetopinf}[1]{\texttt{WCET}(#1, \ensuremath{R_\infty})}
+%\newcommand{\weakmutex}{\vert_W}
+\newcommand{\weakmutex}[2]{\ensuremath{#1\ \vert_W\ #2}}
+
+%------------------------------------------------- RENEW COMMANDS --------------------------------------------------
+
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+%------------------------------------------------- DECLARE MATH OPERATOR -------------------------------------------
+
+\DeclareMathOperator{\anc}{anc}
+\DeclareMathOperator{\des}{des}
+\DeclareMathOperator{\find}{find}
+\DeclareMathOperator{\lca}{LCA}
+\DeclareMathOperator{\none}{None}
+\DeclareMathOperator{\pred}{pred}
+\DeclareMathOperator{\merge}{merge}
+\DeclareMathOperator{\reduce}{reduce}
+\DeclareMathOperator{\riu}{riu}
+\DeclareMathOperator{\size}{size}
+\DeclareMathOperator{\smallpred}{p}
+\DeclareMathOperator{\suc}{succ}
+\DeclareMathOperator{\swap}{swap}
+\DeclareMathOperator{\troot}{root}
+\DeclareMathOperator{\typ}{type}
+\DeclareMathOperator{\type}{type}
+
+%------------------------------------------------------ NEW THEOREM ------------------------------------------------
+
+\newtheorem{definition}{Definition}
+%\newtheorem{proof}{Proof}				% commenter si problème de compilation sur linux/décommenter si problème de compilation sur windows
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+
+%--------------------------------------------------------- DIVERS --------------------------------------------------
+
+\pagestyle{fancy}
+\pgfplotsset{width=7cm,compat=1.18}
+%\setlength{\levelheight}{0.9\levelheight}
+
+
+
+
+
+%\lstset{
+	%numbers=left,
+	%numberstyle=\tiny,
+	%language={Java},
+	%mathescape=true,
+	%flexiblecolumns=true,
+	%morekeywords={def,Int,call,method,var,assert,share,unshare,acquire,release,fork,join,free,invariant,requires,ensures,acc,rd,old},
+	%basicstyle=\sffamily\small,
+	%moredelim=[is][\itshape]{@}{@},
+	%stepnumber=1,
+	%numbersep=2pt} 
+
+%\input{cadp-mcl.sty}
+
+\lstdefinelanguage{LOTOS}
+{
+	morekeywords=[1]{accept,actualizedby,any,behaviour,behavior,choice,
+		endlib,endproc,endspec,endtype,eqns,exit,
+		for,forall,formaleqns,formalopns,formalsorts,hide,
+		i,in,is,let,library,noexit,
+		of,ofsort,opnnames,opns,par,process,
+		renamedby,sortnames,sorts,specification,stop,type,
+		using,where},
+	morekeywords=[2]{atomic,comparedby,constructor,enumeratedby,external,implementedby,
+		iteratedby,printedby},
+	morekeywords=[3]{BasicNaturalNumber,Bit,BitNatRepr,BitString,Bool,Boolean,
+		DecDigit,DecNatRepr,DecString,HexDigit,HexNatRepr,HexString,
+		NatRepresentations,Nat,NaturalNumber,OctDigit,Octet,OctetString,
+		OctNatRepr,OctString,Set,String},
+	morekeywords=[4]{false,true},
+	morekeywords=[5]{and,Bit1,Bit2,Bit3,Bit4,Bit5,
+		Bit6,Bit7,Bit8,Card,eq,ge,
+		gt,iff,implies,Includes,Insert,Ints,
+		IsIn,IsSubsetOf,le,Length,lt,Minus,
+		NatNum,ne,not,NotIn,or,Remove,
+		Reverse,Succ,Union,xor},
+	otherkeywords={<,>,+,-,/,!,
+		?,;,**,==,<>,<=,
+		>=,=>,>>,[>,||,|[,
+		]|,[],|||},
+	sensitive=false,
+	morecomment=[s]{(*}{*)}
+}[keywords,comments]
+
+
+%% Listings definitions for the LOTOS language
+%% produced by Syntax Editor Configuration Tool <cadp@inria.fr>
+%% version 1.7:LOTOS+1.7:SECT
+
+\lstdefinelanguage{LOTOS}
+{
+	morekeywords=[1]{accept,actualizedby,any,behaviour,behavior,choice,
+		endlib,endproc,endspec,endtype,eqns,exit,
+		for,forall,formaleqns,formalopns,formalsorts,hide,
+		i,in,is,let,library,noexit,
+		of,ofsort,opnnames,opns,par,process,
+		renamedby,sortnames,sorts,specification,stop,type,
+		using,where},
+	morekeywords=[2]{atomic,comparedby,constructor,enumeratedby,external,implementedby,
+		iteratedby,printedby},
+	morekeywords=[3]{BasicNaturalNumber,Bit,BitNatRepr,BitString,Bool,Boolean,
+		DecDigit,DecNatRepr,DecString,HexDigit,HexNatRepr,HexString,
+		NatRepresentations,Nat,NaturalNumber,OctDigit,Octet,OctetString,
+		OctNatRepr,OctString,Set,String},
+	morekeywords=[4]{false,true},
+	morekeywords=[5]{and,Bit1,Bit2,Bit3,Bit4,Bit5,
+		Bit6,Bit7,Bit8,Card,eq,ge,
+		gt,iff,implies,Includes,Insert,Ints,
+		IsIn,IsSubsetOf,le,Length,lt,Minus,
+		NatNum,ne,not,NotIn,or,Remove,
+		Reverse,Succ,Union,xor},
+	otherkeywords={<,>,+,-,/,!,
+		?,;,**,==,<>,<=,
+		>=,=>,>>,[>,||,|[,
+		]|,[],|||},
+	sensitive=false,
+	morecomment=[s]{(*}{*)}
+}[keywords,comments]
+
+
+%%%%%%%%%%%%%%
+%%% Thesis Hugues
+%%%%%%%%%%%%%%%%
+
+% ------------------------------ LNT listings ------------------------------
+
+\lstdefinelanguage{LNT}
+{morekeywords={
+		any, as, break, by, case, comparedby, do, else, elsif, end, eval,
+		external, for, function, hide, if, implementedby, in, inout, is,
+		list, loop, module, null, of, only, out, par, printedby, process,
+		raise, raises, return, select, set, sorted, stop, then, type, var,
+		where, while, with, array, channel, disrupt, iteratedby,
+		representedby,
+		!nat_bits,!nat_inf,!nat_sup,!nat_check,!int_bits,!int_inf,
+		!int_sup,!int_check,!string_card,!comparedby,!external,!implementedby,
+		!iteratedby,!printedby,!representedby
+	},
+	otherkeywords={?,|,\#,->,[],||},
+	alsoletter={!},
+	sensitive=false,
+	morecomment=[l]{--},
+	morecomment=[s]{(*}{*)},
+	morestring=[b]"
+}
+
+\lstdefinelanguage{SVL}
+{
+	morekeywords=[1]{abstraction,all,bag,branching,but,chaos,
+		check,comparison,cut,deadlock,divbranching,end,
+		expected,fifo,gate,generation,hide,in,
+		is,label,labels,leaf,livelock,multiple,
+		node,observational,of,par,partial,prio,
+		probabilistic,property,reduction,refined,rename,result,
+		root,safety,single,smart,stochastic,stop,
+		strong,sync,tau-compression,tau-confluence,tau-divergence,tau*.a,
+		total,trace,user,using,verify,weak,
+		with},
+	morekeywords=[2]{\%},
+	morekeywords=[3]{acyclic,bdd,bfs,dfs,fly,std},
+	morekeywords=[4]{FALSE,TRUE},
+	morekeywords=[5]{aldebaran,bcg_min,bcg_cmp,bisimulator,evaluator,evaluator3,
+		evaluator4,exhibitor,fc2tools,reductor,xtl},
+	% otherkeywords={%
+		%                  :,\#,?,==,>=,<=,
+		%                  |=,->,||
+		%                  %,|[,]|,-||,
+		%                  %-|[,|||,-|||
+		%                },
+	alsoletter={-*.\%},
+	sensitive=true,
+	morecomment=[l]{--},
+	morecomment=[s]{(*}{*)},
+	morestring=[b]{'},
+	morestring=[b]{"}
+}[keywords,comments,strings]
+
+\lstdefinelanguage{MCL}
+{
+	morekeywords=[1]{among,any,case,choice,continue,do,
+		else,elsif,end,end_library,end_macro,exists,
+		exit,export,for,forall,from,if,
+		in,let,library,loop,macro,mu,
+		nil,nu,of,on,repeat,step,
+		tau,then,to,until,where,while},
+	morekeywords=[2]{bool,nat,natset,int,real,char,
+		string},
+	morekeywords=[3]{false,true},
+	morekeywords=[4]{abs,and,concat,diff,empty,equ,
+		implies,index,insert,isin,isalnum,isalpha,
+		isdigit,islower,isupper,isxdigit,inter,length,
+		not,nth,or,prefix,remove,rindex,
+		sign,substr,succ,suffix,tolower,toupper,
+		union,xor},
+	otherkeywords={
+		%+,-,=,/,
+		!,^,
+		\%,|,<,>,[,],
+		@,
+		%*,
+		?,<>,<=,>=,
+		->,-|
+	},
+	sensitive=false,
+	morecomment=[s]{(*}{*)},
+	morestring=[b]{'},
+	morestring=[b]{"}
+}[keywords,comments,strings]
+
+% option générale pour tous les langages
+\lstset{
+	%  basicstyle=\sffamily\scriptsize,
+	basicstyle=\sffamily\footnotesize,
+	%basewidth=0.55em,% test for sffamily
+	columns=flexible,
+	showstringspaces=false,
+	language=LNT
+}
+
+\lstnewenvironment{lnt}
+{\lstset{language=LNT}}
+{}
+
+\lstnewenvironment{margelnt}
+{\lstset{language=LNT,xleftmargin=8mm}}
+{}
+
+\lstnewenvironment{margec}
+{\lstset{
+		language=C,
+		basicstyle=\ttfamily\footnotesize,
+		%columns=fixed, % pas joli...
+		xleftmargin=8mm
+}}
+{}
+
+\lstnewenvironment{margesh}
+{\lstset{
+		language=sh,
+		basicstyle=\ttfamily\footnotesize,
+		xleftmargin=8mm
+}}
+{}
+
+\lstnewenvironment{margemcl}
+{\lstset{language=MCL,stringstyle=\ttfamily,xleftmargin=8mm}}
+{}
+
+\lstnewenvironment{margesvl}
+{\lstset{language=SVL,stringstyle=\ttfamily,xleftmargin=8mm}}
+{}
+
+
+\MakeRobust\Call
+
+\begin{document}
+	\maketitle
+	
+	Based on the definitions of mutual exclusions presented in the paper, one can now add to $G$ the mutually exclusive tasks not already belonging to it.
+	The tasks not already belonging to $G$ are $\overline{V} = \bigcup\limits_{T \in S_T} \{v \in \tasksop{T}\ \vert\ v \notin G\}$.
+	To perform the insertion, we must consider the set of mutually exclusive tasks of each task $t \in \overline{V}$, that is $M_t$.
+	Let us then consider two possible cases: either (i) the set only contains tasks that do not belong to $G$, i.e., $M_t \ \cap \ V = \emptyset$, or (ii) the set contains at least one task belonging to $G$, i.e., $M_t \ \cap \ V \neq \emptyset$.
+	
+	For case~(i), the solution is rather simple: $t$ and each task of $M_t$ are added to the graph, without any connection, as initial nodes.
+	By doing so, $\bpmnpaths{G}$ now contains $\cardof{M_t} + 1$ new paths, containing each a single task of $M_t$, or $t$.
+	By construction, there is no path of $G$ containing both $t$ and a task of $M_t$.
+	Thus, they are mutually exclusive, as desired.
+	%Moreover, as the tasks of $M_t$ are not constrained with regards to the other tasks of the graph, they will end up in parallel of the rest of the graph in the final BPMN process (see Section~\ref{sub:handling_par}), thus avoiding the creation of unspecified mutual exclusions.
+	
+	For case~(ii), the solution is slightly more complex.
+	Let us break $M_t$ into two sets: the set of tasks already belonging to $G$ called $\tilde{M_t}$, and the set of tasks not belonging to $G$ called $\overline{M_t}$.
+	We have that $\tilde{M_t} \cup \overline{M_t} = M_t$.
+	A simple---yet naive---way of inserting $t$ and the tasks belonging to $\overline{M_t}$ into $G$ would be to do just as in case (i), that is, adding them to $G$ without any connection, as initial nodes.
+	However, unlike in case~(i), $t$ is, by definition, constrained with regards to some tasks of the graph (the $\tilde{M}_t$).
+	Consequently, inserting these tasks as performed in case (i) would create many unspecified mutual exclusions.
+	To avoid this, the proposed method consists in connecting $t$ and the tasks belonging to $\overline{M_t}$ to a particular node of $G$ while preserving the existing mutual exclusions and limiting the number of unspecified mutual exclusions.
+	This particular node is one of the \textit{closest inevitable common ancestors} of the tasks belonging to $\tilde{M_t}$, and of the mutually exclusive tasks of the tasks of $\overline{M_t}$ already belonging to $G$.
+	
+	\begin{definition}[Closest Inevitable Common Ancestors]
+		Let $\graph$ be a BPMN process.
+		$\forall v_1, ..., v_n \in V$, the \textnormal{closest inevitable common ancestors} of $(v_1, ..., v_n)$ are all the nodes $v_C \in V$ such that:
+		
+		\begin{itemize}
+			\setlength\itemsep{-0.5em}
+			\item[---] $\forall i \in \closedarray{1}{n},\ \forall \widehat{p} \in \bpmnacyclicpaths{G},\ v_i \in \widehat{p} \Rightarrow (v_C \in \widehat{p}\ \land\ \indexof{v_C} < \indexof{v_i})$ (inevitability, commonality, ancestrality);
+			%\item[---] $\forall i \in [1...n], \ \acyclicisreachablefrom{v_C}{v_i}$ (common ancestor) TODO: Revoir cette reachability acyclique \\
+			\item[---] $\forall p_{v_C} = (v_C, v_b, ..., v_m) \in \pathsof{G}{v_C}$, $\nexists j \in \closedarray{b}{m}$ such that $v_j$ is a common ancestor of $\tupleof{v_1}{v_n}$ (closeness).
+			%\item[---] $\forall p_G \in \mathcal{P}_G,\ v_1 \in p_G\ \lor v_2 \in p_G\ \lor\ ...\ \lor v_n \in p_G \implies v_C \in p_G$ (inevitability)
+		\end{itemize}
+		%(ii) $\nexists v' \in V$ such that $v'$ satisfies (i) $\land \ \isreachablefrom{v}{v'}$ (closeness)
+	\end{definition}
+	
+	Among the eventual multiple closest inevitable common ancestors, one of them is selected, and $t$ and the tasks belonging to $\overline{M_t}$ are inserted to $G$ as children of this ancestor.
+	As desired, task $t$ is now mutually exclusive of the tasks of $M_t$.
+	
+	\begin{proposition}[Validity of the Closest Inevitable Common Ancestors]
+		Let $\graph$ be a BPMN process, let $M_t$ be the set of mutually exclusive tasks of a task $t \in V$\footnote{One could take $t \notin V$ without changing the validity of the statement.}, let $\tilde{M}_t = M_t \cap V$, let $\overline{M}_t = M_t \setminus \tilde{M_t}$, and let $V_C$ be the set of closest inevitable common ancestors of the tasks belonging to $\tilde{M_t} \cup \bigcup\limits_{\overline{t} \in \overline{M_t}} \bigcup\limits_{\substack{m \in \mutexesof{\overline{t}} \\ m \in G}}$.
+		We state that inserting $t$ and the tasks $\overline{M}_t$ into $G$ as children of any $v_C \in V_C$ make $t$ weakly mutually exclusive of the tasks $M_t$.
+	\end{proposition}
+	
+	\begin{proof}
+		Let $\graph$ be a BPMN process, let $M_t$ be the set of mutually exclusive tasks of a task $t \in V$\footnote{One could take $t \notin V$ without changing the validity of the statement.}, let $\tilde{M}_t = M_t \cap V$, let $\overline{M}_t = M_t \setminus \tilde{M_t}$, and let $V_C$ be the set of closest inevitable common ancestors of the tasks belonging to $\tilde{M_t} \cup \bigcup\limits_{\overline{t} \in \overline{M_t}} \bigcup\limits_{\substack{m \in \mutexesof{\overline{t}} \\ m \in G}}$.
+		We will show that, $\forall v_C \in V_C$, adding $t$ and the tasks of $\overline{M}_t$ as children of $v_c$ make $t$ weakly mutually exclusive of the tasks belonging to $M_t$.
+		
+		Adding $t$ and the tasks $\overline{M}_t$ as children of $v_C$ creates a BPMN process $G' = (V', E', \Sigma')$, where:
+		\begin{itemize}
+			\setlength\itemsep{-0.5em}
+			\item[---] $V' = V\ \cup\ \overline{M}_t\ \cup\ \{t\}$;
+			\item[---] $E' = E\ \cup\ \bigcup\limits_{\overline{t} \in \overline{M_t}} \{v_C \rightarrow \overline{t}\}\ \cup\ \{v_C \rightarrow t\}$;
+			\item[---] $\Sigma' = \Sigma\ \cup\ \bigcup\limits_{\overline{t} \in \overline{M_t}} \{\sigma(\overline{t})\}\ \cup\ \{\sigma(t)\}$.
+		\end{itemize}
+		
+		Consequently, we have that
+		\begin{equation*}
+			\bpmnacyclicpaths{G'} = \bpmnacyclicpaths{G} \cup \bigcup\limits_{\overline{t} \in \overline{M_t}} \bigcup\limits_{p \in \bpmnacyclicpaths{G}} \{(p[:v_C], \overline{t})\ \vert\ v_C \in p\}\ \cup\ \bigcup\limits_{p \in \bpmnacyclicpaths{G}} \{(p[:v_C], t)\ \vert\ v_C \in p\}
+		\end{equation*}
+		By construction, there is no $p \in \bpmnacyclicpaths{G'}$ containing both $t$ and a task $\overline{t} \in \overline{M_t}$.
+		Moreover, by definition of $v_C$, we have that $\forall \tilde{t} \in \tilde{M_t},\ \forall p \in \bpmnacyclicpaths{G'},\ \tilde{t} \in p \Rightarrow p = (v_1, ..., v_C, ..., \tilde{t}, ..., v_z)$.
+		Thus, by construction of $G'$, there is no $p \in \bpmnacyclicpaths{G'}$ containing both $t$ and a task $\tilde{t} \in \tilde{M_t}$.
+		Consequently, $t$ is weakly mutually exclusive of all $\tilde{t} \in \tilde{M_t}$, and of all $\overline{t} \in \overline{M_t}$, which corresponds to all the tasks of $M_t$.
+	\end{proof}
+	
+	\begin{remark}
+		It is worth mentioning that considering the closest inevitable common ancestor of (the barbarian expression) $\tilde{M_t} \cup \bigcup\limits_{\overline{t} \in \overline{M_t}} \bigcup\limits_{\substack{m \in \mutexesof{\overline{t}} \\ m \in G}}$ is mandatory in order to preserve the original mutual exclusions.
+		Indeed, adding the tasks of $\overline{M_t}$ as children of the closest inevitable common ancestor of $\tilde{M_t}$ only could potentially prevent a task $\overline{t} \in \overline{M_t}$ from being mutually exclusive of one of its mutually exclusive tasks, in the case where such a task is a predecessor of the closest inevitable common ancestor of $\tilde{M_t}$.
+	\end{remark}
+\end{document}
