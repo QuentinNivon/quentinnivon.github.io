@@ -1,0 +1,209 @@
+% (c) Alain Matthes
+% FROM http://tex.stackexchange.com/questions/45645/draw-inside-nodes-to-get-bpmn-gateway-shapes
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\makeatletter
+
+\pgfdeclareshape{CD}
+{
+  \inheritsavedanchors[from=diamond] % this is nearly a rectangle
+  \inheritanchorborder[from=diamond]
+  \inheritanchor[from=diamond]{center}
+  \inheritanchor[from=diamond]{north}
+  \inheritanchor[from=diamond]{south}
+  \inheritanchor[from=diamond]{west}
+  \inheritanchor[from=diamond]{east}
+  \inheritanchor[from=diamond]{north east}
+  \inheritanchor[from=diamond]{south east}
+  \inheritanchor[from=diamond]{north west}
+  \inheritanchor[from=diamond]{south west}
+
+  \backgroundpath{
+    \pgf@process{\outernortheast}%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfmathsetlength{\pgf@xa}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \advance\pgf@xc by-1.414213\pgf@xa%
+    \advance\pgf@yc by-1.414213\pgf@ya%
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+    \pgfpathclose\pgfusepath{stroke}
+    % add
+    \advance\pgf@xc by -.5\pgf@xc%
+    \advance\pgf@yc by -.5\pgf@yc%
+    \pgfsetlinewidth{2pt}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathmoveto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+    \pgfpathmoveto{\pgfqpoint{0.707\pgf@xc}{0.707\pgf@yc}}%
+     \pgfpathlineto{\pgfqpoint{-0.707\pgf@xc}{-0.707\pgf@yc}}%
+     \pgfpathmoveto{\pgfqpoint{-0.707\pgf@xc}{0.707\pgf@yc}}%
+     \pgfpathlineto{\pgfqpoint{0.707\pgf@xc}{-0.707\pgf@yc}}%
+      }
+}
+
+\pgfdeclareshape{PF}
+{
+  \inheritsavedanchors[from=diamond] % this is nearly a rectangle
+  \inheritanchorborder[from=diamond]
+  \inheritanchor[from=diamond]{center}
+  \inheritanchor[from=diamond]{north}
+  \inheritanchor[from=diamond]{south}
+  \inheritanchor[from=diamond]{west}
+  \inheritanchor[from=diamond]{east}
+  \inheritanchor[from=diamond]{north east}
+  \inheritanchor[from=diamond]{south east}
+  \inheritanchor[from=diamond]{north west}
+  \inheritanchor[from=diamond]{south west}
+
+  \backgroundpath{
+    \pgf@process{\outernortheast}%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfmathsetlength{\pgf@xa}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \advance\pgf@xc by-1.414213\pgf@xa%
+    \advance\pgf@yc by-1.414213\pgf@ya%
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+    \pgfpathclose\pgfusepath{stroke}
+    % add
+    \advance\pgf@xc by -.5\pgf@xc%
+    \advance\pgf@yc by -.5\pgf@yc%
+    \pgfsetlinewidth{2pt}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathmoveto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+      }
+}
+
+\pgfdeclareshape{ID}
+{
+  \inheritsavedanchors[from=diamond] % this is nearly a rectangle
+  \inheritanchorborder[from=diamond]
+  \inheritanchor[from=diamond]{center}
+  \inheritanchor[from=diamond]{north}
+  \inheritanchor[from=diamond]{south}
+  \inheritanchor[from=diamond]{west}
+  \inheritanchor[from=diamond]{east}
+  \inheritanchor[from=diamond]{north east}
+  \inheritanchor[from=diamond]{south east}
+  \inheritanchor[from=diamond]{north west}
+  \inheritanchor[from=diamond]{south west}
+
+  \backgroundpath{
+    \pgf@process{\outernortheast}%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfmathsetlength{\pgf@xa}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \advance\pgf@xc by-1.414213\pgf@xa%
+    \advance\pgf@yc by-1.414213\pgf@ya%
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+    \pgfpathclose\pgfusepath{stroke}
+    % add
+    \pgfsetlinewidth{2pt}
+    \pgfutil@tempdima=\pgf@xc%
+    \pgfutil@tempdima=0.5\pgfutil@tempdima%
+    \pgfpathcircle{\pgfpointorigin}{\pgfutil@tempdima}
+      }
+}
+
+\pgfdeclareshape{EB}
+{
+  \inheritsavedanchors[from=diamond] % this is nearly a rectangle
+  \inheritanchorborder[from=diamond]
+  \inheritanchor[from=diamond]{center}
+  \inheritanchor[from=diamond]{north}
+  \inheritanchor[from=diamond]{south}
+  \inheritanchor[from=diamond]{west}
+  \inheritanchor[from=diamond]{east}
+  \inheritanchor[from=diamond]{north east}
+  \inheritanchor[from=diamond]{south east}
+  \inheritanchor[from=diamond]{north west}
+  \inheritanchor[from=diamond]{south west}
+
+  \backgroundpath{
+    \pgf@process{\outernortheast}%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfmathsetlength{\pgf@xa}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \advance\pgf@xc by-1.414213\pgf@xa%
+    \advance\pgf@yc by-1.414213\pgf@ya%
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+    \pgfpathclose\pgfusepath{stroke}
+    % add
+    \pgfutil@tempdima=\pgf@xc%
+    \pgfutil@tempdima=0.6\pgfutil@tempdima%
+    \pgfpathcircle{\pgfpointorigin}{\pgfutil@tempdima}
+        \pgfutil@tempdima=0.8\pgfutil@tempdima%
+    \pgfpathcircle{\pgfpointorigin}{\pgfutil@tempdima}
+     \pgfusepath{stroke}
+    %add
+        \pgfpathmoveto{\pgfqpoint{0pt}{\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{0.25\pgfutil@tempdima}{0.433\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{0.866\pgfutil@tempdima}{0.5\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{0.5\pgfutil@tempdima}{0pt}}%
+        \pgfpathlineto{\pgfqpoint{0.866\pgfutil@tempdima}{-0.5\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{0.25\pgfutil@tempdima}{-0.433\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{0pt}{-\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{-0.25\pgfutil@tempdima}{-0.433\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{-0.866\pgfutil@tempdima}{-0.5\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{-0.5\pgfutil@tempdima}{0pt}}%
+        \pgfpathlineto{\pgfqpoint{-0.866\pgfutil@tempdima}{0.5\pgfutil@tempdima}}%
+        \pgfpathlineto{\pgfqpoint{-0.25\pgfutil@tempdima}{0.433\pgfutil@tempdima}}%
+        \pgfpathclose
+        \pgfusepath{fill}
+       }
+}
+
+\pgfdeclareshape{XOR}
+{
+  \inheritsavedanchors[from=diamond] % this is nearly a rectangle
+  \inheritanchorborder[from=diamond]
+  \inheritanchor[from=diamond]{center}
+  \inheritanchor[from=diamond]{north}
+  \inheritanchor[from=diamond]{south}
+  \inheritanchor[from=diamond]{west}
+  \inheritanchor[from=diamond]{east}
+  \inheritanchor[from=diamond]{north east}
+  \inheritanchor[from=diamond]{south east}
+  \inheritanchor[from=diamond]{north west}
+  \inheritanchor[from=diamond]{south west}
+
+  \backgroundpath{
+    \pgf@process{\outernortheast}%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfmathsetlength{\pgf@xa}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \advance\pgf@xc by-1.414213\pgf@xa%
+    \advance\pgf@yc by-1.414213\pgf@ya%
+    \pgfpathmoveto{\pgfqpoint{\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{\pgf@yc}}%
+    \pgfpathlineto{\pgfqpoint{-\pgf@xc}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{0pt}{-\pgf@yc}}%
+    \pgfpathclose\pgfusepath{stroke}
+    %add
+    \advance\pgf@xc by -.5\pgf@xc%
+    \pgfsetlinewidth{2pt}
+    \pgfpathmoveto{\pgfqpoint{ 0.6\pgf@xc}{0.8484\pgf@xc}}%
+    \pgfpathlineto{\pgfqpoint{-0.6\pgf@xc}{-0.8484\pgf@xc}}%
+    \pgfpathmoveto{\pgfqpoint{-0.6\pgf@xc}{0.8484\pgf@xc}}%
+    \pgfpathlineto{\pgfqpoint{ 0.6\pgf@xc}{-0.8484\pgf@xc}}%
+    }
+}
